@@ -211,13 +211,6 @@ var Picker = React.createClass({
       return sections;
     },
 
-    getModifiers: function() {
-      // we hide the color tone modifiers when searching to reduce clutter
-      if (!this.state.term) {
-        return <Modifiers active={this.state.modifier} onChange={this.updateActiveModifier} />
-      }
-    },
-
     getSearchInput: function() {
       if (this.props.search === true) {
         return <div className="emoji-search-wrapper">
@@ -240,7 +233,6 @@ var Picker = React.createClass({
           <ul onBlur={this.setFocus}>{this.getCategories()}</ul>
         </header>
         <div className="emoji-grandlist" ref="grandlist" role="listbox">
-          {this.getModifiers()}
           {this.getSearchInput()}
           {this.getEmojis()}
         </div>
