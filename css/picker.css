@@ -8,6 +8,12 @@
   position: relative;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 15px rgba(0,0,0,0.1);
 }
+button {
+  background: #F5F7F9;
+  padding: 0;
+  border: none;
+  background: none;
+}
 
 .emoji-dialog .emoji-dialog-header {
   box-sizing: border-box;

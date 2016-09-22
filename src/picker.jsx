@@ -158,7 +158,7 @@ var Picker = React.createClass({
 
       _.each(this.props.categories, function(details, key){
         headers.push(<li key={key} className={this.state.category == key ? "active" : ""}>
-          <Emoji id={key} role="menuitem" aria-label={key + " category"} shortname={":"+details.emoji+":"} onClick={function(){
+          <Emoji id={key} href={`#${details.title}`} shortname={":"+details.emoji+":"} onClick={function(){
             jumpToCategory(key);
           }} onKeyUp={function(e) {
             e.preventDefault()
@@ -199,7 +199,7 @@ var Picker = React.createClass({
 
           if (_.compact(list).length) {
             sections.push(<div className="emoji-category" key={key} ref={key}>
-              <h2 refs={category.title} tabIndex="0" className="emoji-category-header">{category.title}</h2>
+              <h2 refs={category.title} id={category.title} tabIndex="0" className="emoji-category-header">{category.title}</h2>
               <ul className="emoji-category-list">{list}</ul>
             </div>);
           }
@@ -228,11 +228,11 @@ var Picker = React.createClass({
       var classes = 'emoji-dialog';
       if (this.props.search === true) classes += ' with-search';
 
-      return <div className={classes} role="dialog">
-        <header className="emoji-dialog-header" role="menu">
+      return <div className={classes} >
+        <header className="emoji-dialog-header" >
           <ul onBlur={this.setFocus}>{this.getCategories()}</ul>
         </header>
-        <div className="emoji-grandlist" ref="grandlist" role="listbox">
+        <div className="emoji-grandlist" ref="grandlist" >
           {this.getSearchInput()}
           {this.getEmojis()}
         </div>
