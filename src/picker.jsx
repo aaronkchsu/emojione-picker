@@ -158,7 +158,7 @@ var Picker = React.createClass({
 
       _.each(this.props.categories, function(details, key){
         headers.push(<li key={key} className={this.state.category == key ? "active" : ""}>
-          <Emoji id={key} href={`#${details.title}`} shortname={":"+details.emoji+":"} onClick={function(){
+          <Emoji id={key} href={"#" + details.title} shortname={":"+details.emoji+":"} onClick={function(){
             jumpToCategory(key);
           }} onKeyUp={function(e) {
             e.preventDefault()
