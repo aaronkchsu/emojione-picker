@@ -3,7 +3,8 @@ var emojione = require("emojione");
 
 var Emoji = React.createClass({
   propTypes: {
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    shortname: React.PropTypes.string
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {

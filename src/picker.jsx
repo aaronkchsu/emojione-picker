@@ -8,7 +8,10 @@ var _ = require("underscore");
 
 var Picker = React.createClass({
     propTypes: {
-      search: React.PropTypes.string,
+      search: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.bool
+      ]),,
       onChange: React.PropTypes.func.isRequired
     },
 
@@ -199,7 +202,7 @@ var Picker = React.createClass({
 
           if (_.compact(list).length) {
             sections.push(<div className="emoji-category" key={key} ref={key}>
-              <h2 refs={category.title} id={category.title} tabIndex="0" className="emoji-category-header">{category.title}</h2>
+              <h2 ref={category.title} id={category.title} tabIndex="0" className="emoji-category-header">{category.title}</h2>
               <ul className="emoji-category-list">{list}</ul>
             </div>);
           }
