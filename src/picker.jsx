@@ -11,7 +11,7 @@ var Picker = React.createClass({
       search: React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.bool
-      ]),,
+      ]),
       onChange: React.PropTypes.func.isRequired
     },
 
