@@ -1,36 +1,39 @@
-var React = require("react");
-var emojione = require("emojione");
-var filterObject = require("./objectHelpers");
+import React from 'react';
+import emojione from 'emojione';
 
-var Emoji = React.createClass({
+const Emoji = React.createClass({
   propTypes: {
+    onKeyUp: React.PropTypes.func,
     onClick: React.PropTypes.func,
-    shortname: React.PropTypes.string
+    ariaLabel: React.PropTypes.string,
+    name: React.PropTypes.string,
+    shortname: React.PropTypes.string,
+    title: React.PropTypes.string,
+    role: React.PropTypes.string
   },
-  anchor_props: ["id", "href", "onKeyUp", "onClick", "onChange"],
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    // avoid rerendering the Emoji component if the shortname hasnt changed
-    return nextProps.shortname != this.props.shortname;
+    // avoid rerendering the Emoji component if the shortname hasn't changed
+    return nextProps.shortname !== this.props.shortname;
   },
 
   createMarkup: function() {
     return {__html: emojione.shortnameToImage(this.props.shortname)};
   },
 
-  predicate: function(prop) {
-    return this.anchor_props.includes(prop)
-  },
-
-  anchorProps: function() {
-    return filterObject(this.props, this.predicate);
-  },
-
   render: function() {
-    return <a {...this.anchorProps()} tabIndex="0" className="emoji"
-                title={this.props.name}
-                dangerouslySetInnerHTML={this.createMarkup()}>
-    </a>
+    return (
+      <div
+        onKeyUp={this.props.onKeyUp}
+        onClick={this.props.onClick}
+        tabIndex="0"
+        className="emoji"
+        aria-label={this.props.ariaLabel}
+        title={this.props.name}
+        role={this.props.role}
+        dangerouslySetInnerHTML={this.createMarkup()}
+      />
+    );
   }
 });
 
