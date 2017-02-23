@@ -20,7 +20,8 @@ const Picker = React.createClass({
         React.PropTypes.bool,
         React.PropTypes.string,
       ]),
-      onChange: React.PropTypes.func.isRequired
+      onChange: React.PropTypes.func.isRequired,
+      onClose: React.PropTypes.func,
     },
 
     getDefaultProps: function() {
@@ -81,6 +82,7 @@ const Picker = React.createClass({
 
     componentDidMount: function() {
       this.refs.grandlist.addEventListener('scroll', this.updateActiveCategory);
+      document.addEventListener("keydown", this._handleEscKey, false);
       this.updateActiveCategory();
     },
 
@@ -101,6 +103,14 @@ const Picker = React.createClass({
             this.setState({rendered: this.state.rendered + 1});
           }
         }, 0);
+      }
+    },
+
+    _handleEscKey:function(event){
+      if(event.keyCode == 27) {
+        if (this.props.onClose) {
+          this.props.onClose()
+        }
       }
     },
 
