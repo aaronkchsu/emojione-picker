@@ -1,6 +1,5 @@
 import React from 'react';
 import Emoji from './emoji';
-import Modifiers from './modifiers';
 import strategy from 'emojione/emoji.json';
 import emojione from 'emojione';
 import store from 'store';
@@ -116,11 +115,6 @@ const Picker = React.createClass({
 
     updateSearchTerm: function() {
       this.setState({term: this.refs.search.value});
-    },
-
-    updateActiveModifier: function(modifier) {
-      this.setState({modifier: modifier});
-      store.set('emoji-modifier', modifier);
     },
 
     emojisFromStrategy: function(strategy) {
@@ -257,13 +251,6 @@ const Picker = React.createClass({
       return sections;
     },
 
-    renderModifiers: function() {
-      // we hide the color tone modifiers when searching to reduce clutter
-      if (!this.state.term) {
-        return <Modifiers active={this.state.modifier} onChange={this.updateActiveModifier} />;
-      }
-    },
-
     renderSearchInput: function() {
       if (this.props.search === true) {
         return <div className="emoji-search-wrapper">
@@ -294,8 +281,6 @@ const Picker = React.createClass({
           <ul onBlur={this.setFocus}>{this.renderCategories()}</ul>
         </header>
         <div className="emoji-grandlist" ref="grandlist" role="listbox">
-          {this.renderModifiers()}
-          {this.renderSearchInput()}
           {this.renderEmojis()}
         </div>
       </div>

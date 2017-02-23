@@ -30,8 +30,6 @@ const Modifiers = React.createClass({
         onChange(index);
       }} /></li>);
     });
-
-    return <ol className="modifiers">{list}</ol>;
   }
 });
 
